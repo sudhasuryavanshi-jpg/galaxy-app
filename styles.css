@@ -1,0 +1,56 @@
+:root{
+  --bg:#071021;
+  --panel:#06121a;
+  --muted:#9fb0c8;
+  --accent:#ffd166;
+  --glass: rgba(255,255,255,0.04);
+  --glass-2: rgba(255,255,255,0.02);
+  --shadow: 0 6px 30px rgba(2,6,23,0.6);
+  font-size:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body,#app{height:100%}
+body{
+  font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: radial-gradient(1000px 600px at 10% 10%, rgba(255,210,120,0.04), transparent), var(--bg);
+  color:#e6f0fb;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:24px;
+}
+.app{max-width:1200px;margin:0 auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px 20px}
+.topbar h1{font-weight:600;letter-spacing:0.4px}
+.controls button{background:linear-gradient(180deg,#ffffff10,#00000010);border:1px solid rgba(255,255,255,0.06);color:var(--accent);padding:8px 14px;border-radius:10px;cursor:pointer}
+.stage{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
+.solar-wrap{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:28px;border-radius:14px;box-shadow:var(--shadow);min-height:640px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.sun{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:160px;height:160px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.sun-core{width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 35% 35%, #fff0a8, #ffb84d 30%, #ff8a00 70%);box-shadow:0 0 120px 40px rgba(255,160,50,0.12), inset 0 0 40px rgba(255,255,255,0.12)}
+.sun-glow{position:absolute;inset:-220px;border-radius:50%;filter:blur(40px);background:radial-gradient(circle,#ffb84d,transparent 30%);opacity:0.18}
+
+/* orbit base styles */
+.orbit{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none}
+.planet-wrap{position:absolute;left:50%;top:50%;transform-origin:50% 50%;}
+.planet{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;cursor:pointer;box-shadow:0 6px 20px rgba(2,6,23,0.5);border:1px solid rgba(255,255,255,0.04)}
+.planet:hover{box-shadow:0 10px 30px rgba(0,0,0,0.6);transform:translate(-50%,-50%) scale(1.08)}
+
+/* side panel */
+.panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;padding:18px;color:var(--muted);min-height:420px}
+.panel h2{color:#fff;margin-bottom:6px}
+.panel p{margin-bottom:12px}
+.stats{list-style:none;padding-left:0}
+.stats li{margin-bottom:8px}
+.credits{margin-top:16px;font-size:13px;color:#7f97ac}
+
+/* small screens */
+@media (max-width:920px){
+  .stage{grid-template-columns:1fr}
+  .panel{order:2}
+  .solar-wrap{min-height:520px}
+}
+
+/* orbit helper visuals */
+.orbit-ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;border:1px dashed rgba(255,255,255,0.03);width:100%;height:100%;pointer-events:none}
+
+/* utilities for animation control */
+.paused *[data-orbit]{animation-play-state:paused !important}
